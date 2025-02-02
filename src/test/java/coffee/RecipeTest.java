@@ -43,10 +43,12 @@ public class RecipeTest {
     }
 
     @Test
-    public void testSetPrice_NegativeValue() {
-        assertThrows(RecipeException.class, () -> {
-            recipe.setPrice("-50"); // Should throw RecipeException
+    public void testSetPriceNegative() {
+        Recipe recipe = new Recipe();
+        Exception exception = assertThrows(RecipeException.class, () -> {
+            recipe.setPrice("-50"); // Negative price
         });
+        assertEquals("Price must be a positive integer", exception.getMessage());
     }
 
     @Test
